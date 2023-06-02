@@ -1,12 +1,29 @@
-* { font-family: 'Baloo 2', sans-serif, monospace; color: white;} 
+* { font-family: 'Baloo 2', sans-serif, monospace; color: rgb(24, 113, 48);} 
+.page{
+    text-align: center;
+    margin:auto;
+}
 .nav{
     text-align: center;
     width:140px;
     height:50px;
     margin: 30px;
-    font-size: 30px;
+    font-size: 14px;
     display: inline-block;
-    border: 0.5cm;
-    border-color: blanchedalmond;
+    border-width: 1cm;
+    border-radius: 100px;
+    border-color: rgb(176, 117, 28);
     
+}
+.input-container {
+    display: inline-block;
+}
+.login_div{
+   color:black;
+    text-align: center;
+    margin: 10px auto;
+    align-items: center;
+    width:250px;
+    height:20px;
+    display: block;
 }
