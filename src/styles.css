@@ -1,0 +1,12 @@
+* { font-family: 'Baloo 2', sans-serif, monospace; color: white;} 
+.nav{
+    text-align: center;
+    width:140px;
+    height:50px;
+    margin: 30px;
+    font-size: 30px;
+    display: inline-block;
+    border: 0.5cm;
+    border-color: blanchedalmond;
+    
+}
