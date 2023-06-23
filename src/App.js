@@ -11,8 +11,15 @@ import WorkingReport from "./report";
 import WorkInOut    from "./WorkingKu";
 import Kudobby from "./Dobby";
 
-
-
+let isLoggedIn = false;
+export function set_login(){
+    isLoggedIn = true;
+    return 0;
+}
+export function set_logout(){
+    isLoggedIn = false;
+    return 1;
+}
 
 function App() {
     const movePage = useNavigate();
@@ -20,6 +27,7 @@ function App() {
     function goMain() {
         movePage('/Attendance');
     }
+
     function goMemo() {
         movePage('/memo');
     }
@@ -35,14 +43,16 @@ function App() {
         movePage('/report');
     }
 
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    // const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
 
     // 로그인이 완료되면 isLoggedIn 상태를 변경하는 함수
     const handleLogin = () => {
         if (id === 'admin' && password === 'admin123') {
-            setIsLoggedIn(true);
+            // setIsLoggedIn(true);
+            goMain();
         } else {
             alert('아이디 또는 비밀번호가 잘못되었습니다.');
         }
@@ -68,7 +78,7 @@ function App() {
                 <Route path="/dobby" element={<Kudobby/>} />
                 <Route path="/report" element={<WorkingReport/>} />
                 <Route path="/Attendance" element={<WorkInOut/>} />
-                <Route path="/" element={<WorkInOut/>} />
+                <Route path="/" element={<Login/>} />
                 <Route path="/memo" element={<Note/>} />
                 <Route path="mypage/" element={<UserDataPage/>} />
             </Routes>
@@ -77,15 +87,15 @@ function App() {
     }
     else {
         return (
-            <div className="page">
-                        <h1>Kunnect Attendance Login</h1>
-                        <div id="input-container">
-                            ID <input className="login_div" type="text" value={id}
-                                      onChange={(e) => setId(e.target.value)} placeholder="아이디"/>
-                            PW <input className="login_div" type="password" value={password}
-                                      onChange={(e) => setPassword(e.target.value)} placeholder="비밀번호"/>
-                        </div>
-                        <button onClick={handleLogin}>로그인</button>
+            <div>
+                <Routes>
+                    <Route path="/dobby" element={<Kudobby/>} />
+                    <Route path="/report" element={<WorkingReport/>} />
+                    <Route path="/Attendance" element={<WorkInOut/>} />
+                    <Route path="/" element={<Login/>} />
+                    <Route path="/memo" element={<Note/>} />
+                    <Route path="mypage/" element={<UserDataPage/>} />
+                </Routes>
                     </div>
         );
     }
