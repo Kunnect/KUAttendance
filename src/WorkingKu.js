@@ -2,6 +2,7 @@ import React, {useState, useReducer} from 'react'
 //import VisualizeOfficeIn from "./ShowWorkData";
 import { useNavigate } from "react-router-dom";
 import './App.css';
+import {set_logout} from './App'
 
 let WorkInTime = "00:00:00"; // 출근 시간 기록
 let WorkOutTime = "00:00:00"; // 퇴근 시간 기록
@@ -11,6 +12,7 @@ let WorkingSec; // 일한 초(퇴근 시간 - 출근 시간)
 let IsWork = false; // 출근 여부 확인
 let IsOut = false;
 let curTime;
+
 
 // let IsWorkIn = false;
 const reducer = (state, action) =>{
@@ -120,6 +122,7 @@ function WorkInOut() {
     function gohome() {
         IsOut = false;
         IsWork = false;
+        set_logout();
         movePage('/');
     }
 
@@ -255,9 +258,9 @@ function WorkInOut() {
         return (
             <div className="WorkInOut">
                 <div className="WorkOutSheet">
-                    <p><p1>출근 시간</p1><p2>{WorkInTime[4]}</p2></p><br/>
-                    <p><p1>퇴근 시간</p1><p2>{WorkOutTime[4]}</p2></p><br/>
-                    <p><p1>근무 시간</p1><p3>{WorkingHour}{"시간 "}{WorkingMinitue}{"분 "}{WorkingSec}{"초"}</p3></p><br/>
+                    <p><p11>출근 시간</p11><p21>{WorkInTime[4]}</p21></p><br/>
+                    <p><p12>퇴근 시간</p12><p22>{WorkOutTime[4]}</p22></p><br/>
+                    <p><p13>근무 시간</p13><p33>{WorkingHour}{"시간 "}{WorkingMinitue}{"분 "}{WorkingSec}{"초"}</p33></p><br/>
                     <div className="WorkOutsubButton">
                         <button onClick={gohome}>
                             로그아웃
