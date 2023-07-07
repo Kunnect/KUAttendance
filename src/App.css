@@ -327,7 +327,7 @@
   position: absolute;
   left: 50%;
   top : 0%;
-  transform:  translate(-50%, 20%);
+  transform:  translate(-45%, 20%);
   width:328px;
   height:240px;
   outline: 4px solid black;
@@ -338,11 +338,18 @@
   font-size: 20px
 }
 
+/*.Kudobby now textarea{*/
+/*  position: absolute;*/
+/*  left: 55%;*/
+/*  top : 50%;*/
+/*  font-size: 20px;*/
+/*}*/
+
 .Kudobby ranker{
   position: absolute;
   left: 50%;
-  top : 50%;
-  transform:  translate(-50%, 0%);
+  top : 40%;
+  transform:  translate(-45%, 0%);
   width:328px;
   height:240px;
   outline: 4px solid black;
