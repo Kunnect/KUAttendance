@@ -7,7 +7,6 @@ import {BrowserRouter as Router, Routes, Route, useNavigate} from 'react-router-
 import Login from "./login";
 import Note from "./memo";
 import UserDataPage from "./userpage";
-import UserPage from "./userpage";
 import WorkingReport from "./report";
 import WorkInOut    from "./WorkingKu";
 import Kudobby from "./Dobby";
@@ -22,6 +21,7 @@ const AppRouter = () => {
                 <Route path="/" element={<Login/>} />
                 <Route path="/memo" element={<Note/>} />
                 <Route path="mypage/" element={<UserDataPage/>} />
+                <Route path="/MemoList" element={<MemoList/>}/>
             </Routes>
         </Router>
     );

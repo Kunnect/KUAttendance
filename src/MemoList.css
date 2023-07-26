@@ -1,0 +1,15 @@
+table{
+   
+    
+    display: flex;
+   
+    flex-direction: column;
+}
+th,td,table {
+    width: fit-content;
+    
+     border-radius: 1rem;
+    padding: 1rem;
+    border-collapse: collapse; /* 테두리를 겹치도록 설정 */
+    border: 2px solid #000; /* 테두리의 두께와 색상 설정 */
+  }
