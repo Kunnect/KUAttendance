@@ -2,7 +2,7 @@ import React, { useMemo, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTable, usePagination } from "react-table";
 import DATA_JSON from "./MemoTable/MEMO_DATA.json"; // 데이터 파일 경로를 맞게 수정해주세요
-import { IconName } from "react-icons/ai";
+import { CaretLeftOutlined } from "@ant-design/icons";
 import "./MemoList.css";
 
 function MemoList() {
@@ -93,8 +93,11 @@ function MemoList() {
   );
 
   return (
-    <div>
-      <div></div>
+    <div className="container">
+      <div id="title">
+        <CaretLeftOutlined />
+        작성된 메모
+      </div>
       <div>
         <div>
           <table {...getTableProps()} className="tableWithBorders">

@@ -6,3 +6,15 @@
 .tableWithBorders {
   border-collapse: collapse; /* 테두리가 병합되어 끊어지지 않게 설정 */
 }
+
+#title {
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 수직 가운데 정렬 */
+
+  height: 100vh; /* 뷰포트 높이에 맞게 설정 */
+}
