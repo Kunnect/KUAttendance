@@ -53,11 +53,11 @@ function Note() {
     return (
         <div className="Memo">
             <p>메모장 페이지입니다</p>
-            <ul>
-                {memos.map((memo, index) => (
-                    <li key={index}>{memo}</li>
-                ))}
-            </ul>
+            {/*<ul>*/}
+            {/*    {memos.map((memo, index) => (*/}
+            {/*        <li key={index}>{memo}</li>*/}
+            {/*    ))}*/}
+            {/*</ul>*/}
 
       <textarea
           onChange={handleChange}

@@ -14,13 +14,44 @@ let IsOut = false;
 let curTime;
 
 // let IsWorkIn = false;
-const reducer = (state, action) => {
-  switch (action.type) {
-    case "diposit-in":
-      IsWork = true;
-      curTime = Date();
-      WorkInTime = curTime.split(" ");
-      WorkOutTime = curTime.split(" ");
+
+const reducer = (state, action) =>{
+    switch(action.type) {
+        case 'diposit-in':
+            IsWork=true;
+            curTime = Date();
+            WorkInTime = curTime.split(" ")
+            WorkOutTime = curTime.split(" ")
+
+            // const name = action.payload.name;
+            const newDate = {
+                date: Date(),
+                // name,
+                isHere: false,
+            }
+
+
+
+            return {
+                count: state.count+1,
+                dayData: [...state.dayData, newDate]
+            }
+        case 'diposit-out':
+            IsWork = false;
+            IsOut = true;
+            curTime = Date();
+            WorkOutTime = curTime.split(" ")
+            return {
+                count: state.count,
+                dayData: state.dayData.filter(
+                    (WorkData) =>WorkData.isHere = !WorkData.isHere,
+                ),
+            }
+        default:
+            return state;
+    }
+
+
 
       // const name = action.payload.name;
       const newDate = {
