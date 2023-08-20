@@ -35,7 +35,7 @@ function Login() {
       set_login();
       goMain();
     } else {
-      alert("아이디 또는 비밀번호가 잘못되었습니다.");
+      alert("아이디 또는 비밀번호가 잘못되었습니다..");
     }
   };
 
