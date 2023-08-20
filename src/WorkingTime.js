@@ -5,7 +5,7 @@ import DATA_JSON from "./MemoTable/MEMO_DATA.json"; // 데이터 파일 경로�
 import { CaretLeftOutlined } from "@ant-design/icons";
 import "./MemoList.css";
 
-function MemoList() {
+function WorkingTime() {
   //studentInfo에 변경이 있을 때만 업데이트
   //accessor와 받아오는 data keyname이 같아야함
   const columnData = [
@@ -14,11 +14,7 @@ function MemoList() {
       accessor: "data", // "data"는 해당 열에 표시할 데이터의 키입니다.
     },
     {
-      Header: "Memo",
-      accessor: "memo",
-    },
-    {
-      Header: "Time", // "Time" 컬럼 추가
+      Header: "WorkingTime", // "Time" 컬럼 추가
       accessor: "time", // "time" 데이터 가져오기
     },
   ];
@@ -102,7 +98,7 @@ function MemoList() {
         <span id="prevBtn">
           <CaretLeftOutlined />
         </span>
-        작성된 메모
+        근무 시간
       </div>
 
       <div>
@@ -145,4 +141,4 @@ function MemoList() {
   );
 }
 
-export default MemoList;
+export default WorkingTime;
