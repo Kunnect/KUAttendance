@@ -5,7 +5,7 @@ import "./App.css";
 import "./styles.css";
 import { set_login } from "./App";
 import WorkInOut from "./WorkingKu";
-
+import axios from "axios";
 function Login() {
   const movePage = useNavigate();
 
@@ -31,12 +31,24 @@ function Login() {
 
   // 로그인이 완료되면 isLoggedIn 상태를 변경하는 함수
   const handleLogin = () => {
-    if (id === "admin" && password === "admin123") {
-      set_login();
-      goMain();
-    } else {
-      alert("아이디 또는 비밀번호가 잘못되었습니다..");
-    }
+    const data = {
+      student_id: id,
+      password: password,
+    };
+    console.log(data);
+    set_login();
+    goMain();
+    // axios.post("api/login", data).then((res) => {
+    //   console.log(res);
+    //   if (res.data.code == 200) {
+    //     set_login();
+    //     goMain();
+    //     localStorage.setItem("key", res.data.Authorization);
+    //   } else {
+    //     console.log("res:" + res.data);
+    //     alert("아이디 또는 비밀번호가 잘못되었습니다..");
+    //   }
+    // });
   };
 
   return (

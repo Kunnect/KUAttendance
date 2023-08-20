@@ -17,6 +17,7 @@ let curTime;
 
 
 
+
 // let IsWorkIn = false;
 
 const reducer = (state, action) => {
@@ -26,6 +27,7 @@ const reducer = (state, action) => {
       curTime = Date();
       WorkInTime = curTime.split(" ")
       WorkOutTime = curTime.split(" ")
+
 
       // const name = action.payload.name;
       const newDate = {
@@ -53,6 +55,7 @@ const reducer = (state, action) => {
     default:
       return state;
   }
+
 }
 
 

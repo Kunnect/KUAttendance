@@ -25,3 +25,13 @@
 #btnContainer {
   margin-top: 10px;
 }
+.tableContainer {
+  position: relative; /* 컨테이너의 위치 지정을 위해 relative 사용 */
+}
+
+#btnContainer {
+  position: absolute; /* 버튼 위치를 절대 위치로 설정 */
+  bottom: 270px; /* 아래에서 10px 거리를 둠 */
+  left: 50%; /* 가운데 정렬을 위해 왼쪽 위치를 50%로 설정 */
+  transform: translateX(-50%); /* 가운데 정렬 */
+}
