@@ -25,7 +25,7 @@ const AppRouter = () => {
         <Route path="/memo" element={<Note />} />
         <Route path="/mypage" element={<UserDataPage />} />
         <Route path="/MemoList" element={<MemoList />} />
-        {/* <Route path="/WorkingTime" element={<WorkingTime />} /> */}
+        <Route path="/WorkingTime" element={<WorkingTime />} />
       </Routes>
     </Router>
   );

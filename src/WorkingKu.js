@@ -17,7 +17,6 @@ let curTime;
 
 
 
-
 // let IsWorkIn = false;
 
 const reducer = (state, action) => {
@@ -27,7 +26,6 @@ const reducer = (state, action) => {
       curTime = Date();
       WorkInTime = curTime.split(" ")
       WorkOutTime = curTime.split(" ")
-
 
       // const name = action.payload.name;
       const newDate = {
@@ -55,7 +53,6 @@ const reducer = (state, action) => {
     default:
       return state;
   }
-
 }
 
 
@@ -77,43 +74,43 @@ const reducer = (state, action) => {
       };
       const token = localStorage.getItem("key");
 
-      axios.post('api',
-          // {
-          //   time: WorkInTime[4]
-          // },
-          {
-            headers: {Authorization: token,},
-          }
-      )
+      // axios.post('api',
+      //     // {
+      //     //   time: WorkInTime[4]
+      //     // },
+      //     {
+      //       headers: {Authorization: token,},
+      //     }
+      // )
 
 
 
     } else {
 
-      axios.post('api',
-          // {
-          //   time: WorkInTime[4]
-          // },
-          {
-            headers: {Authorization: token,},
-          }
-      )
+      // axios.post('api',
+      //     // {
+      //     //   time: WorkInTime[4]
+      //     // },
+      //     {
+      //       headers: {Authorization: token,},
+      //     }
+      // )
 
       let start_time;
       let end_time;
       let working_time;
 
-      axios.get('/user').then((response_object) =>{
-        // 성공 핸들링
-        start_time= response_object.data('work_start_time');
-        end_time = response_object.data('work_leave_time');
-        working_time = response_object.data('working_time');
-        // console.log(ans.res.data);
-      })
-          .catch((error) =>{
-            // 에러 핸들링
-            alert(error);
-          });
+      // axios.get('/user').then((response_object) =>{
+      //   // 성공 핸들링
+      //   start_time= response_object.data('work_start_time');
+      //   end_time = response_object.data('work_leave_time');
+      //   working_time = response_object.data('working_time');
+      //   // console.log(ans.res.data);
+      // })
+      //     .catch((error) =>{
+      //       // 에러 핸들링
+      //       alert(error);
+      //     });
 
       WorkInTime = start_time.split(" ");
       WorkOutTime = end_time.split(" ");
