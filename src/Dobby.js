@@ -74,20 +74,20 @@ function Kudobby() {
     return (
         <div className="Kudobby">
             <now>
-            <h2>현재 출근중인 멤버</h2>
-            <ul>
-                {filteredUsers.map(user => (
-                    <li key={user.id}>{user.name}</li>
-                ))}
-            </ul>
+                <h2>현재 출근중인 멤버</h2>
+                <ul>
+                    {filteredUsers.map(user => (
+                        <li key={user.id}>{user.name}</li>
+                    ))}
+                </ul>
             </now>
             <ranker>
-            <h2>상위 랭커 3</h2>
-            <ol>
-                {topThreeUsersByWorkHours.map(user => (
-                    <li key={user.id}>{user.name}</li>
-                ))}
-            </ol>
+                <h2>상위 랭커 3</h2>
+                <ol>
+                    {topThreeUsersByWorkHours.map(user => (
+                        <li key={user.id}>{user.name}</li>
+                    ))}
+                </ol>
             </ranker>
         </div>
     );

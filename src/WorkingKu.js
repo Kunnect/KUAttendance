@@ -30,6 +30,8 @@ const reducer = (state, action) =>{
                 isHere: false,
             }
 
+
+
             return {
                 count: state.count+1,
                 dayData: [...state.dayData, newDate]

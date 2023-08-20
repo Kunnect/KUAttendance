@@ -21,7 +21,11 @@ export function set_logout(){
     return 1;
 }
 
+
+
+
 function App() {
+
     const movePage = useNavigate();
 
     function goMain() {
@@ -32,7 +36,7 @@ function App() {
         movePage('/memo');
     }
 
-    // 하단 페이지
+// 하단 페이지
     function goMypage() {
         movePage('/mypage');
     }
@@ -42,7 +46,6 @@ function App() {
     function goReport() {
         movePage('/report');
     }
-
 
     // const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [id, setId] = useState('');
