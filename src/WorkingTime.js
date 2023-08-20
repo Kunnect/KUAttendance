@@ -1,10 +1,9 @@
 import React, { useMemo, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTable, usePagination } from "react-table";
-import DATA_JSON from "./MemoTable/WORKING_DATA.json"; // 데이터 파일 경로를 맞게 수정해주세요
+import DATA_JSON from "./MemoTable/MEMO_DATA.json"; // 데이터 파일 경로를 맞게 수정해주세요
 import { CaretLeftOutlined } from "@ant-design/icons";
 import "./MemoList.css";
-import axios from "axios";
 
 function WorkingTime() {
   //studentInfo에 변경이 있을 때만 업데이트
@@ -20,7 +19,6 @@ function WorkingTime() {
     },
   ];
   const columns = useMemo(() => columnData, []);
-  //나중에 DATA_JSON을 tabletxt로 바꾸기
   const data = useMemo(() => DATA_JSON, []); // 데이터를 DATA_JSON에서 가져옴
   const tableInstance = useTable({ columns, data });
   const movePage = useNavigate();
@@ -33,6 +31,22 @@ function WorkingTime() {
   const [selectedRow, setSelectedRow] = useState(null);
 
   const fullNameHeaderClass = "fullNameHeader";
+
+  // 체크박스가 체크되었는지 여부를 관리하는 상태
+  const [checkedRows, setCheckedRows] = useState([]);
+
+  // 체크박스를 클릭할 때마다 해당 행의 인덱스를 상태에 추가 또는 제거하는 함수
+  const handleCheckboxChange = (rowIndex) => {
+    if (checkedRows.includes(rowIndex)) {
+      setCheckedRows((prev) => prev.filter((index) => index !== rowIndex));
+    } else {
+      setCheckedRows((prev) => [...prev, rowIndex]);
+    }
+  };
+  //radio를 클릭하면 인덱스 받아오기
+  const handleRadioChange = (rowIndex) => {
+    setSelectedRow(rowIndex);
+  };
 
   const [studentInfo, setstudentInfo] = useState([]);
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 번호
@@ -77,22 +91,7 @@ function WorkingTime() {
     },
     usePagination
   );
-  const [tableTxt, setTableTxt] = useState([]);
 
-  // useEffect(() => {
-  //   axios.get("/api/workingtime").then((res) => {
-  //     if (Array.isArray(res.data) && res.data.length > 0) {
-  //       //map 사용시 새로운 배열 생성해서
-  //       // const resultObj = res.data.map((item) => item);
-  //       // setTeacherInfo(resultObj);
-  //       const contents = res.data;
-  //       setTableTxt(contents);
-  //       console.log("contents:" + contents);
-  //     } else {
-  //       console.log("데이터가 배열이 아닙니다.");
-  //     }
-  //   });
-  // });
   return (
     <div className="container">
       <div id="title" onClick={goMain}>
@@ -103,8 +102,9 @@ function WorkingTime() {
       </div>
 
       <div>
-        <div className="tableContainer">
+        <div>
           <table {...getTableProps()} className="tableWithBorders">
+            {" "}
             <tbody {...getTableBodyProps()}>
               {rows.map((row, rowIndex) => {
                 prepareRow(row);
@@ -120,8 +120,6 @@ function WorkingTime() {
             </tbody>
           </table>
         </div>
-
-        {/* prev와 next 버튼 */}
         <div id="btnContainer">
           <button
             onClick={goToPrevPage}
