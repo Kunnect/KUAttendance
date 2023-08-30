@@ -22,6 +22,12 @@ let curTime;
 
 
 const reducer = (state, action) => {
+  let body ={
+    student_id : "admin",
+    department_name : "정보운영처",
+    work_start_time : WorkInTime,
+    update_end_time : WorkOutTime
+  }
   switch (action.type) {
     case 'diposit-in':
       IsWork = true;
@@ -36,6 +42,15 @@ const reducer = (state, action) => {
         isHere: false,
       }
 
+      const token = localStorage.getItem("key");
+
+      axios.post('api',
+          {
+            body
+          },{
+            headers: {Authorization: token},
+          })
+
 
       return {
         count: state.count + 1,
@@ -45,59 +60,7 @@ const reducer = (state, action) => {
       IsWork = false;
       IsOut = true;
       curTime = Date();
-      WorkOutTime = curTime.split(" ")
-      return {
-        count: state.count,
-        dayData: state.dayData.filter(
-            (WorkData) => WorkData.isHere = !WorkData.isHere,
-        ),
-      }
-    default:
-      return state;
-  }
-}
-
-
-  const initialState = {
-    count: 0,
-    dayData: [],
-  };
-
-  function loadFiles() {
-  }
-
-  function saveFiles(nowDate, month) {
-    let body ={
-      student_id : "admin",
-      department_name : "정보운영처",
-      work_start_time : WorkInTime,
-      update_end_time : WorkOutTime
-    }
-
-    if (IsWork === true) {
-
-      const token = localStorage.getItem("key");
-
-      axios.post('api',
-          {
-            body
-          },{
-            headers: {Authorization: token},
-          }
-      )
-
-
-
-    } else {
-      const token = localStorage.getItem("key");
-      axios.post('api',
-          {
-            body
-          },
-          {
-            headers: {Authorization: token,}
-          }
-      )
+      WorkOutTime = curTime.split(" ");
 
       let start_time;
       let end_time;
@@ -114,11 +77,6 @@ const reducer = (state, action) => {
 
       WorkInTime = start_time.split(" ");
       WorkOutTime = end_time.split(" ");
-
-      // let user_work_T = working_time.split(":");
-      // WorkingHour = user_work_T[0];
-      // WorkingMinitue = user_work_T[1];
-      // WorkingSec = user_work_T[2];
 
       let inTime = WorkInTime[4].split(":");
       let outTime = WorkOutTime[4].split(":");
@@ -139,12 +97,27 @@ const reducer = (state, action) => {
         WorkingMinitue += 60;
       }
 
-
-
-
-
-    }
+      return {
+        count: state.count,
+        dayData: state.dayData.filter(
+            (WorkData) => WorkData.isHere = !WorkData.isHere,
+        ),
+      }
+    default:
+      return state;
   }
+}
+
+
+  const initialState = {
+    count: 0,
+    dayData: [],
+  };
+
+  function loadFiles() {
+  }
+
+
 
   function WorkInOut() {
     const [workTimeInfo, dispatch] = useReducer(reducer, initialState);
@@ -265,7 +238,6 @@ const reducer = (state, action) => {
           </div>
       );
     } else if (IsOut === false) {
-      saveFiles(nowDate, month);
       return (
           <div className="WorkInOut">
             <div className="WorkSheet">
@@ -307,7 +279,6 @@ const reducer = (state, action) => {
           </div>
       );
     } else {
-      saveFiles(nowDate, month);
       return (
           <div className="WorkInOut">
             <div className="WorkOutSheet">
