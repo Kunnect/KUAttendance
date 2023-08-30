@@ -28,6 +28,9 @@ const reducer = (state, action) => {
     work_start_time : WorkInTime,
     update_end_time : WorkOutTime
   }
+
+  const token = localStorage.getItem("key");
+
   switch (action.type) {
     case 'diposit-in':
       IsWork = true;
@@ -41,8 +44,6 @@ const reducer = (state, action) => {
         // name,
         isHere: false,
       }
-
-      const token = localStorage.getItem("key");
 
       axios.post('api',
           {
@@ -61,6 +62,13 @@ const reducer = (state, action) => {
       IsOut = true;
       curTime = Date();
       WorkOutTime = curTime.split(" ");
+
+      axios.post('api',
+          {
+            body
+          },{
+            headers: {Authorization: token},
+          })
 
       let start_time;
       let end_time;
