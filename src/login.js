@@ -36,19 +36,18 @@ function Login() {
       password: password,
     };
     console.log(data);
-    set_login();
-    goMain();
-    // axios.post("api/login", data).then((res) => {
-    //   console.log(res);
-    //   if (res.data.code == 200) {
-    //     set_login();
-    //     goMain();
-    //     localStorage.setItem("key", res.data.Authorization);
-    //   } else {
-    //     console.log("res:" + res.data);
-    //     alert("아이디 또는 비밀번호가 잘못되었습니다..");
-    //   }
-    // });
+
+    axios.post("/auth/login", data).then((res) => {
+      console.log(res);
+      if (res.data.code == 200) {
+        set_login();
+        goMain();
+        localStorage.setItem("key", res.data.Authorization);
+      } else {
+        console.log("res:" + res.data);
+        alert("아이디 또는 비밀번호가 잘못되었습니다..");
+      }
+    });
   };
 
   return (
