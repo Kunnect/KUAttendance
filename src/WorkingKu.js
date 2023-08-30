@@ -19,6 +19,8 @@ let curTime;
 
 // let IsWorkIn = false;
 
+
+
 const reducer = (state, action) => {
   switch (action.type) {
     case 'diposit-in':
@@ -65,79 +67,77 @@ const reducer = (state, action) => {
   }
 
   function saveFiles(nowDate, month) {
+    let body ={
+      student_id : "admin",
+      department_name : "정보운영처",
+      work_start_time : WorkInTime,
+      update_end_time : WorkOutTime
+    }
+
     if (IsWork === true) {
-      let jsonWorkIn = {
-        year: nowDate[3],
-        month: month,
-        day: nowDate[2],
-        Time: WorkInTime[4],
-      };
+
       const token = localStorage.getItem("key");
 
-      // axios.post('api',
-      //     // {
-      //     //   time: WorkInTime[4]
-      //     // },
-      //     {
-      //       headers: {Authorization: token,},
-      //     }
-      // )
+      axios.post('api',
+          {
+            body
+          },{
+            headers: {Authorization: token},
+          }
+      )
 
 
 
     } else {
-
-      // axios.post('api',
-      //     // {
-      //     //   time: WorkInTime[4]
-      //     // },
-      //     {
-      //       headers: {Authorization: token,},
-      //     }
-      // )
+      const token = localStorage.getItem("key");
+      axios.post('api',
+          {
+            body
+          },
+          {
+            headers: {Authorization: token,}
+          }
+      )
 
       let start_time;
       let end_time;
-      let working_time;
 
-      // axios.get('/user').then((response_object) =>{
-      //   // 성공 핸들링
-      //   start_time= response_object.data('work_start_time');
-      //   end_time = response_object.data('work_leave_time');
-      //   working_time = response_object.data('working_time');
-      //   // console.log(ans.res.data);
-      // })
-      //     .catch((error) =>{
-      //       // 에러 핸들링
-      //       alert(error);
-      //     });
+      axios.get('/user').then((response_object) =>{
+        // 성공 핸들링
+        start_time= response_object.data('work_start_time');
+        end_time = response_object.data('work_end_time');
+      })
+          .catch((error) =>{
+            // 에러 핸들링
+            alert(error);
+          });
 
       WorkInTime = start_time.split(" ");
       WorkOutTime = end_time.split(" ");
 
-      let user_work_T = working_time.split(":");
-      WorkingHour = user_work_T[0];
-      WorkingMinitue = user_work_T[1];
-      WorkingSec = user_work_T[2];
+      // let user_work_T = working_time.split(":");
+      // WorkingHour = user_work_T[0];
+      // WorkingMinitue = user_work_T[1];
+      // WorkingSec = user_work_T[2];
 
-      // let inTime = WorkInTime[4].split(":");
-      // let outTime = WorkOutTime[4].split(":");
-      // WorkingHour = outTime[0] - inTime[0];
-      // WorkingMinitue = outTime[1] - inTime[1];
-      // WorkingSec = outTime[2] - inTime[2];
-      // if (WorkingHour < 0) {
-      //   WorkingHour = "17" - inTime[0];
-      //   WorkingMinitue = "30" - inTime[1];
-      //   WorkingSec = "00" - inTime[2];
-      // }
-      // if (WorkingSec < 0) {
-      //   WorkingMinitue -= 1;
-      //   WorkingSec += 60;
-      // }
-      // if (WorkingMinitue < 0) {
-      //   WorkingHour -= 1;
-      //   WorkingMinitue += 60;
-      // }
+      let inTime = WorkInTime[4].split(":");
+      let outTime = WorkOutTime[4].split(":");
+      WorkingHour = outTime[0] - inTime[0];
+      WorkingMinitue = outTime[1] - inTime[1];
+      WorkingSec = outTime[2] - inTime[2];
+      if (WorkingHour < 0) {
+        WorkingHour = "17" - inTime[0];
+        WorkingMinitue = "30" - inTime[1];
+        WorkingSec = "00" - inTime[2];
+      }
+      if (WorkingSec < 0) {
+        WorkingMinitue -= 1;
+        WorkingSec += 60;
+      }
+      if (WorkingMinitue < 0) {
+        WorkingHour -= 1;
+        WorkingMinitue += 60;
+      }
 
 
 
@@ -154,6 +154,7 @@ const reducer = (state, action) => {
       IsOut = false;
       IsWork = false;
       set_logout();
+
       movePage("/");
     }
 
