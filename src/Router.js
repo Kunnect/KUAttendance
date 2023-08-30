@@ -14,6 +14,8 @@ import WorkingReport from "./report";
 import WorkInOut from "./WorkingKu";
 import Kudobby from "./Dobby";
 import WorkingTime from "./WorkingTime";
+import MemoList from "./MemoList";
+import WorkingTime from "./WorkingTime";
 const AppRouter = () => {
   return (
     <Router>
